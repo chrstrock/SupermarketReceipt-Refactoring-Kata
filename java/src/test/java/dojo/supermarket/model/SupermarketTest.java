@@ -11,13 +11,13 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 class SupermarketTest {
     private final SupermarketCatalog catalog = new FakeCatalog();
     private final Product toothbrush = new Product("toothbrush", ProductUnit.EACH);
+    private final Product apples = new Product("apples", ProductUnit.KILO);
 
     // Todo: test all kinds of discounts are applied properly
 
     @Test
     void tenPercentDiscount() {
         catalog.addProduct(toothbrush, 0.99);
-        Product apples = new Product("apples", ProductUnit.KILO);
         catalog.addProduct(apples, 1.99);
 
         Teller teller = new Teller(catalog);
