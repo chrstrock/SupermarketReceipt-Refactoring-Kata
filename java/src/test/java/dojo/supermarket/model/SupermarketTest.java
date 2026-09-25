@@ -10,6 +10,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 class SupermarketTest {
     private final SupermarketCatalog catalog = new FakeCatalog();
+    private final Teller teller = new Teller(catalog);
     private final Product toothbrush = new Product("toothbrush", ProductUnit.EACH);
     private final Product apples = new Product("apples", ProductUnit.KILO);
 
@@ -20,7 +21,6 @@ class SupermarketTest {
         catalog.addProduct(toothbrush, 0.99);
         catalog.addProduct(apples, 1.99);
 
-        Teller teller = new Teller(catalog);
         teller.addSpecialOffer(SpecialOfferType.TEN_PERCENT_DISCOUNT, toothbrush, 10.0);
 
         ShoppingCart cart = new ShoppingCart();
