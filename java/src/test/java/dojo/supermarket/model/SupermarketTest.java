@@ -10,12 +10,12 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 class SupermarketTest {
     private final SupermarketCatalog catalog = new FakeCatalog();
+    private final Product toothbrush = new Product("toothbrush", ProductUnit.EACH);
 
     // Todo: test all kinds of discounts are applied properly
 
     @Test
     void tenPercentDiscount() {
-        Product toothbrush = new Product("toothbrush", ProductUnit.EACH);
         catalog.addProduct(toothbrush, 0.99);
         Product apples = new Product("apples", ProductUnit.KILO);
         catalog.addProduct(apples, 1.99);
