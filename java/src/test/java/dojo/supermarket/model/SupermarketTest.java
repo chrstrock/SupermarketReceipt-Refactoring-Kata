@@ -13,6 +13,7 @@ class SupermarketTest {
     private final Teller teller = new Teller(catalog);
     private final Product toothbrush = new Product("toothbrush", ProductUnit.EACH);
     private final Product apples = new Product("apples", ProductUnit.KILO);
+    private final ShoppingCart cart = new ShoppingCart();
 
     // Todo: test all kinds of discounts are applied properly
 
@@ -23,7 +24,6 @@ class SupermarketTest {
 
         teller.addSpecialOffer(SpecialOfferType.TEN_PERCENT_DISCOUNT, toothbrush, 10.0);
 
-        ShoppingCart cart = new ShoppingCart();
         cart.addItemQuantity(apples, 2.5);
         
         // ACT
