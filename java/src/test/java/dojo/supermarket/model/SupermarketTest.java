@@ -2,6 +2,7 @@ package dojo.supermarket.model;
 
 import dojo.supermarket.ReceiptPrinter;
 import org.approvaltests.Approvals;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import java.util.Collections;
@@ -17,10 +18,37 @@ class SupermarketTest {
 
     // Todo: test all kinds of discounts are applied properly
 
-    @Test
-    void tenPercentDiscount() {
+    @BeforeEach
+    void setUp(){
         catalog.addProduct(toothbrush, 0.99);
         catalog.addProduct(apples, 1.99);
+    }
+    @Test
+    void emptyCartShouldBeNothingTest(){
+        Receipt receipt = teller.checksOutArticlesFrom(cart);
+        Approvals.verify(new ReceiptPrinter(40).printReceipt(receipt));
+    }
+
+    @Test
+    void oneItemShouldShowOneItemWithItsCostTest(){
+        cart.addItem(toothbrush);
+
+        Receipt receipt = teller.checksOutArticlesFrom(cart);
+        Approvals.verify(new ReceiptPrinter(40).printReceipt(receipt));
+    }
+
+    @Test
+    void two_items_should_sum_together(){
+        cart.addItem(toothbrush);
+        cart.addItem(apples);
+
+        Receipt receipt = teller.checksOutArticlesFrom(cart);
+        Approvals.verify(new ReceiptPrinter(40).printReceipt(receipt));
+    }
+
+    @Test
+    void tenPercentDiscount() {
+
 
         teller.addSpecialOffer(SpecialOfferType.TEN_PERCENT_DISCOUNT, toothbrush, 10.0);
 
